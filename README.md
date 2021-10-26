@@ -42,4 +42,4 @@ ArkNorth is a banking app that allows the user to login, view their banking info
     - State management solution Redux/context?
 - Back end language - C# and ASP.net
 - Database solution
-  - Stripe
+  - SQL - T-SQL - noSQL?
