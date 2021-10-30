@@ -1,7 +1,14 @@
 # NorthArk Banks
 
+![NorthArk Logo](assets/NorthArk_TypeLogo.svg)
+
 Initial project for the capstone project: NorthArk Banks.
 
+**Remember not to push API keys to git!**
+
+## Design 
+Palette and Logo designs can be found inside of the Figma file.
+[Figma ProtoTyping WIP](https://www.figma.com/file/UMI1G9rYU3Sd6FDTomnjsB/NorthArk-Banks?node-id=0%3A1)
 
 ## R&D
 
@@ -29,37 +36,10 @@ ArkNorth is a banking app that allows the user to login, view their banking info
 
 
 
-### Non-functional decisions that should be made
-
-The following is up for discussion. These are talking points on decisions that should be made early in the project.
-
 #### Tech stack related
 - Front end language - JavaScript
   - React Library
     - State management solution Redux/context?
-- Back end language - Java
-  - Spring
+- Back end language - C# and ASP.net
 - Database solution
-  - SQL or noSQL
-
-
-
-#### Design Related
-- Styling approach 
-  - CSS, SCSS, styled-component, UI or CSS Library?
-- Style Guide 
-  - Color palette
-  - Fonts
-  - Styling Dos and Don'ts
-- Branding
-- Design system (If not using a UI library)
-  - Set of reusable components, such as a button component - so that things remain consistent through-out the app.
-- ProtoTypes?
-
-
-
-
-
-##### Comments:
-
-> If we don't use a UI library, I would like to throw TypeScript out there as a suggestion. Knowledge of TypeScript is **not** required. For the front end, you can still use vanilla JavaScript/React in a TS project. - Silas
+  - SQL - T-SQL - noSQL?
