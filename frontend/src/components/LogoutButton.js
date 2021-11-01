@@ -16,16 +16,16 @@ const modalStyle = {
     p: 4,
   };
 
-const LoginButton = (params) => {
+const LogoutButton = (params) => {
 
-    {/* login modal state handlers */}
+    {/* logout confirmation modal state handlers */}
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     
     return (
         <div>
-            <Button variant="contained" onClick={handleOpen}>Login</Button>
+            <Button variant="contained" onClick={handleOpen}>Logout</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -33,12 +33,12 @@ const LoginButton = (params) => {
 
                 <Box sx={modalStyle} className='d-flex align-items-center flex-column'>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Please enter your login information. (form to come later this is just for basic logic implementation)
+                        Really Logout?
                     </Typography> 
                     <div className='modalButtons'>
                         {/*simple auth changing for testing, will be more secure and based on actually checking login info when that system is in place*/}
-                        <Button variant="contained" onClick={()=>{params.setAuth(true)}}>Login</Button>
-                        <Button variant="contained" onClick={handleClose}>Close</Button>
+                        <Button variant="contained" onClick={()=>{params.setAuth(false)}}>Logout</Button>
+                        <Button variant="contained" onClick={handleClose}>Cancel</Button>
                     </div>
                 </Box>
             </Modal>
@@ -46,4 +46,4 @@ const LoginButton = (params) => {
     )
 }
 
-export default LoginButton;
+export default LogoutButton;
