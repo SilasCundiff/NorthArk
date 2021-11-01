@@ -1,6 +1,6 @@
 # NorthArk Banks
 
-![NorthArk Logo](assets/NorthArk_TypeLogo.svg)
+![NorthArk Logo](frontend/assets/NorthArk_TypeLogo.svg)
 
 Initial project for the capstone project: NorthArk Banks.
 
