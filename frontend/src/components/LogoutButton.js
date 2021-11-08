@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { useAuthorizedContext } from '../context/AuthContext';
+import { useSignOutUser } from '../lib/hooks';
 
 const modalStyle = {
   position: 'absolute',
@@ -19,8 +19,6 @@ const modalStyle = {
 
 const LogoutButton = () => {
   /* logout confirmation modal state handlers */
-  // Destructure setAuth from the context
-  const { setAuth } = useAuthorizedContext();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -36,13 +34,7 @@ const LogoutButton = () => {
             Really Logout?
           </Typography>
           <div className='modalButtons'>
-            {/*simple auth changing for testing, will be more secure and based on actually checking login info when that system is in place*/}
-            <Button
-              variant='contained'
-              onClick={() => {
-                setAuth(false);
-              }}
-            >
+            <Button variant='contained' onClick={useSignOutUser}>
               Logout
             </Button>
             <Button variant='contained' onClick={handleClose}>

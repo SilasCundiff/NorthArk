@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { useAuthorizedContext } from '../context/AuthContext';
+import { useSignInWithGoogle } from '../lib/hooks';
 
 const modalStyle = {
   position: 'absolute',
@@ -17,10 +17,7 @@ const modalStyle = {
   p: 4,
 };
 
-const LoginButton = (params) => {
-  // Destructure setAuth from the context
-  const { setAuth } = useAuthorizedContext();
-
+const LoginButton = () => {
   /* login modal state handlers */
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -34,16 +31,10 @@ const LoginButton = (params) => {
       <Modal open={open} onClose={handleClose} aria-labelledby='modal-modal-title'>
         <Box sx={modalStyle} className='d-flex align-items-center flex-column'>
           <Typography id='modal-modal-title' variant='h6' component='h2'>
-            Please enter your login information. (form to come later this is just for basic logic implementation)
+            Please login with Google!
           </Typography>
           <div className='modalButtons'>
-            {/*simple auth changing for testing, will be more secure and based on actually checking login info when that system is in place*/}
-            <Button
-              variant='contained'
-              onClick={() => {
-                setAuth(true);
-              }}
-            >
+            <Button variant='contained' onClick={useSignInWithGoogle}>
               Login
             </Button>
             <Button variant='contained' onClick={handleClose}>
