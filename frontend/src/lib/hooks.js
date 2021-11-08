@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { createTheme } from '@mui/material/styles';
 import { blue, grey } from '@mui/material/colors';
+import { auth, googleAuthProvider } from '../utils/firebase';
+import { createUserInFirebase } from './firestore';
 
 export const useTheme = (mode) => {
   const theme = useMemo(
@@ -31,4 +33,17 @@ export const useTheme = (mode) => {
   );
 
   return theme;
+};
+
+export const useSignInWithGoogle = async () => {
+  try {
+    await auth.signInWithPopup(googleAuthProvider);
+    createUserInFirebase(auth.currentUser);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const useSignOutUser = async () => {
+  await auth.signOut();
 };

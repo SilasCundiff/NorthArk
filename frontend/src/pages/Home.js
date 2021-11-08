@@ -7,7 +7,7 @@ import { Box } from '@mui/system';
 import { useAuthorizedContext } from '../context/AuthContext';
 
 const Home = () => {
-  const { auth } = useAuthorizedContext();
+  const { user } = useAuthorizedContext();
   return (
     <div>
       <Container>
@@ -20,9 +20,9 @@ const Home = () => {
           <Box sx={{ width: '100%', height: 300, padding: '16px' }}>
             {/*basic logic for changing app based on authorization state (logged in or out)*/}
             {/*checks the value of auth (true or false) and renders either the login or logout button*/}
-            {auth ? <p>Logged In.</p> : <p>Logged Out.</p>}
+            {user ? <p>Logged In.</p> : <p>Logged Out.</p>}
             {/* in future this would return multiple components, or an entire page/pages, rather than just the different login/out buttons */}
-            {auth ? <LogoutButton /> : <LoginButton />}
+            {user ? <LogoutButton /> : <LoginButton />}
           </Box>
         </Paper>
       </Container>

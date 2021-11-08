@@ -4,15 +4,17 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthorizedProvider } from '../context/AuthContext';
 import { ColorModeProvider } from '../context/ColorModeContext';
 import { useTheme } from '../lib/hooks';
+import { auth } from '../utils/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Providers = ({ children }) => {
-  const [auth, setAuth] = useState(false);
+  const [user, loading, error] = useAuthState(auth);
   const [mode, setMode] = useState('dark');
 
   const theme = useTheme(mode);
 
   return (
-    <AuthorizedProvider value={{ auth, setAuth }}>
+    <AuthorizedProvider value={{ user, loading, error }}>
       <ColorModeProvider setMode={setMode}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>{children}</BrowserRouter>

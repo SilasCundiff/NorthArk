@@ -2,21 +2,17 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
+import { browserSessionPersistence, setPersistence } from 'firebase/auth';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDyuYMot6PZDx9yu5EhXF1Ui3u_Tb6qAvQ",
-    authDomain: "northark.firebaseapp.com",
-    projectId: "northark",
-    storageBucket: "northark.appspot.com",
-    messagingSenderId: "662000079648",
-    appId: "1:662000079648:web:7d0d950bb2b25ce9a9bd45",
-    measurementId: "G-LL9KC3KK78"
-};
+// create a file named firebase-config-object.js in the utils folder
+// copy and paste the firebaseconfig that is provided on your firebase northark project
+// make sure to add the export keyword before the const keyword.
+import { firebaseConfig } from './firebase-config-object';
 
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 
-// exporting the auth and google oauth objects to be used elsewhere
 export const auth = firebase.auth();
+setPersistence(auth, browserSessionPersistence);
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 export const firestore = firebase.firestore();
