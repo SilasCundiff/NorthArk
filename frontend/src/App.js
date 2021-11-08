@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 import firebase from './utils/firebase';
 import Providers from './components/Providers';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
+      
+      <Footer />
     </Providers>
   );
 }

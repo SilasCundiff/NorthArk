@@ -4,12 +4,54 @@
   margin-top: -20px;
 }
 
-// body {
-//     margin: 5px;
-// }
-
 .modalButtons {
   button {
     margin: 20px 15px -15px 10px;
+  }
+}
+
+#footer {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 15px;
+  font-size: 0.72em;
+  margin-top: 10px;
+
+  .footerLeft {
+
+    .leftTop {
+      .footerLogo {
+        width: 35px;
+        height: 35px;
+      }
+      .copyrightText {
+        margin-top: 10px;
+        padding-left: 7px;
+      }
+    }
+
+    .leftBottom {
+      margin-top: -12px;
+      padding-left: 4px;
+    }
+
+  }
+
+  .footerCenter {
+    margin-top: 15px;
+
+    @media only screen and (max-width: 768px){
+      margin-top: -10px;
+    }
+  }
+
+  .footerRight {
+    padding: 10px 30px 0 0;
+
+    .siteMapList {
+      list-style-type: none;
+
+    }
   }
 }
