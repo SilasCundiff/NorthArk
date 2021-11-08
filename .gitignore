@@ -1,3 +1,4 @@
 .env
 .vscode
 *.log
+firebase-config-object.js
