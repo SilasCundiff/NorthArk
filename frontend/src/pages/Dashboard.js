@@ -11,7 +11,7 @@ const Dashboard = () => {
 
           <Box sx={{width: '100%', padding: '16px'}}>
 
-            <h2>Hello, {user.displayName.split(' ')[0]}.</h2>
+            <h2>Hello, {user.displayName.split(' ')[0]}. </h2>
 
           </Box>
 
