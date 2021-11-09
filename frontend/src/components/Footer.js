@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import { useAuthorizedContext } from '../context/AuthContext';
 
 const Footer = () => {
+    const { user } = useAuthorizedContext();
     return (
         <div id='footer' className='d-flex flex-column flex-md-row justify-content-between'>
             {/* Left side of the footer on larger screens, top of footer on smaller screens */}
@@ -45,7 +47,7 @@ const Footer = () => {
                 {/* two lists, left and right, to keep things not looking awful, unless there's not many links on the site */}
                 <ul className=' siteMapList siteMapLeft'>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/Dashboard'>Dashboard</Link></li>
+                    <li><Link to={user ? '/Dashboard' : '/'}>Dashboard</Link></li>
                     <li><Link to='/'>link</Link></li>
                 </ul>
                 <ul className='siteMapList siteMapRight'>
