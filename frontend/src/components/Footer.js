@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import { useAuthorizedContext } from '../context/AuthContext';
 
 const Footer = () => {
+    const { user } = useAuthorizedContext();
     return (
         <div id='footer' className='d-flex flex-column flex-md-row justify-content-between'>
             {/* Left side of the footer on larger screens, top of footer on smaller screens */}
@@ -15,8 +17,8 @@ const Footer = () => {
                     <p className='copyrightText'>© 2021 NorthArk Investment Bank</p>
                 </div>
                 <div className='leftBottom d-flex flex-column'>
-                    <p className='text-center text-md-left'><a href='mailto: NorthArk@NorthArk.com' target='_blank'>NorthArk@NorthArk.com</a> &nbsp; 
-                    <a href='tel:555-867-5309' target='_blank'>(555)867-5309</a> <br/>
+                    <p className='text-center text-md-left'><a href='mailto: NorthArk@NorthArk.com' target='_blank' rel="noreferrer">NorthArk@NorthArk.com</a> &nbsp; 
+                    <a href='tel:555-867-5309' target='_blank' rel="noreferrer">(555)867-5309</a> <br/>
                     1234 NorthArk Road, 
                     A City, 85647
                     </p>
@@ -28,13 +30,13 @@ const Footer = () => {
             SOCIALS */}
 
             <div className='footerCenter d-flex justify-content-center'>
-                <a href='http://www.twitter.com' target="_blank" className='socialLinks twitterIcon'>
+                <a href='http://www.twitter.com' target="_blank" rel="noreferrer" className='socialLinks twitterIcon'>
                     <TwitterIcon fontSize='large' />
                 </a>
-                <a href='http://www.facebook.com' target="_blank" className='socialLinks facebookIcon'>
+                <a href='http://www.facebook.com' target="_blank" rel="noreferrer" className='socialLinks facebookIcon'>
                     <FacebookIcon fontSize='large' />
                 </a>
-                <a href='http://www.youtube.com' target="_blank" className='socialLinks youtubeIcon'>
+                <a href='http://www.youtube.com' target="_blank" rel="noreferrer" className='socialLinks youtubeIcon'>
                     <YouTubeIcon fontSize='large' />
                 </a>
             </div>
@@ -45,13 +47,13 @@ const Footer = () => {
                 {/* two lists, left and right, to keep things not looking awful, unless there's not many links on the site */}
                 <ul className=' siteMapList siteMapLeft'>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/Dashboard'>Dashboard</Link></li>
-                    <li><a href=''>link</a></li>
+                    <li><Link to={user ? '/Dashboard' : '/'}>Dashboard</Link></li>
+                    <li><Link to='/'>link</Link></li>
                 </ul>
                 <ul className='siteMapList siteMapRight'>
-                    <li><a href=''>link</a></li>
-                    <li><a href=''>link</a></li>
-                    <li><a href=''>link</a></li>
+                    <li><Link to='/'>link</Link></li>
+                    <li><Link to='/'>link</Link></li>
+                    <li><Link to='/'>link</Link></li>
                 </ul>
             </div>
         </div>
