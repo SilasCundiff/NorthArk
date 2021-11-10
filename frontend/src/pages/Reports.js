@@ -1,15 +1,15 @@
 import { useAuthorizedContext } from '../context/AuthContext';
-import { DashboardComp } from '../components/DashboardComp';
+import { ReportsComp } from '../components/ReportsComp';
 import { NotLoggedIn } from '../components/NotLoggedIn';
 
 
-const Dashboard = () => {
+const Reports = () => {
   const { user } = useAuthorizedContext();
   return (
     <>
-      { user ? <DashboardComp /> : <NotLoggedIn /> }
+        { user ? <ReportsComp /> : <NotLoggedIn /> }
     </>
   )
 };
 
-export default Dashboard;
+export default Reports;
