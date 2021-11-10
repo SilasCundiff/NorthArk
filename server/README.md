@@ -1,2 +1,2 @@
 ![NorthArk Logo](../frontend/src/assets/NorthArk_TypeLogo.svg)
-# NorthArk Front-end
+# NorthArk Back-end

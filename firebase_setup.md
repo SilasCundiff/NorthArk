@@ -16,6 +16,7 @@ Click on the empty html tag and use the default values to create the project.
 ![project setup](/firebase%20tutorial/setup.png)
 
 When you get to this screen, copy the firebaseConfig object
+
 ![config file](/firebase%20tutorial/config.png)
 
 Create a new file in your Northark/frontend/utils/ folder named ```firebase-config-object.js``` and paste the firebaseConfig object you copied into it. 
