@@ -35,10 +35,12 @@ export const useTheme = (mode) => {
   return theme;
 };
 
+
 export const useSignInWithGoogle = async () => {
   try {
     await auth.signInWithPopup(googleAuthProvider);
     createUserInFirebase(auth.currentUser);
+    window.location='/dashboard';
   } catch (err) {
     console.log(err);
   }
@@ -46,4 +48,5 @@ export const useSignInWithGoogle = async () => {
 
 export const useSignOutUser = async () => {
   await auth.signOut();
+  window.location='/';
 };
