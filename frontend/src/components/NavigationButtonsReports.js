@@ -35,6 +35,7 @@ export const NavigationButtonsReports = () => {
           </Link>
 
           {/** change link to when we have the page for upgrading */}
+          {/** check if the user is already upgraded and replace it with an advanced reports dropdown list */}
           <Link to='/'>
             <ListItemButton sx={{ pl: 4, padding: '2px 5px 0 20px' }}>
               <ListItemText primary="Upgrade your Account" />
