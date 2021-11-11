@@ -2,3 +2,4 @@
 .vscode
 *.log
 firebase-config-object.js
+/node_modules
