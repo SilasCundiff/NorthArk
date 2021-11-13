@@ -1,2 +1,12 @@
-// The entry point for the backend
-// can keep routes here for now, but may need to move them to a separate file if this one becomes to large
+const express = require('express');
+const plaid = require('plaid');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
