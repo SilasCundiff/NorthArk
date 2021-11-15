@@ -4,7 +4,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useSignOutUser } from '../lib/hooks';
-
+import { useNavigate } from 'react-router';
 const modalStyle = {
   position: 'absolute',
   top: '50%',
@@ -22,6 +22,13 @@ const LogoutButton = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const navigate = useNavigate();
+  const signOutUser = useSignOutUser();
+
+  const handleLogout = () => {
+    signOutUser();
+    navigate('/');
+  };
 
   return (
     <div>
@@ -34,7 +41,7 @@ const LogoutButton = () => {
             Really Logout?
           </Typography>
           <div className='modalButtons'>
-            <Button variant='contained' onClick={useSignOutUser}>
+            <Button variant='contained' onClick={handleLogout}>
               Logout
             </Button>
             <Button variant='contained' onClick={handleClose}>
