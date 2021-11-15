@@ -4,6 +4,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useSignInWithGoogle } from '../lib/hooks';
+import { useNavigate } from 'react-router';
 
 const modalStyle = {
   position: 'absolute',
@@ -23,6 +24,18 @@ const LoginButton = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const navigate = useNavigate();
+  const signInWithGoogle = useSignInWithGoogle();
+  const handleLogin = async () => {
+    try {
+      await signInWithGoogle();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      navigate('/dashboard');
+    }
+  };
+
   return (
     <div>
       <Button variant='contained' onClick={handleOpen}>
@@ -34,7 +47,7 @@ const LoginButton = () => {
             Please login with Google!
           </Typography>
           <div className='modalButtons'>
-            <Button variant='contained' onClick={useSignInWithGoogle}>
+            <Button variant='contained' onClick={handleLogin}>
               Login
             </Button>
             <Button variant='contained' onClick={handleClose}>

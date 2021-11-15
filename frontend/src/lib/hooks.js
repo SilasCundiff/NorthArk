@@ -35,18 +35,17 @@ export const useTheme = (mode) => {
   return theme;
 };
 
-
-export const useSignInWithGoogle = async () => {
-  try {
-    await auth.signInWithPopup(googleAuthProvider);
-    createUserInFirebase(auth.currentUser);
-    window.location='/dashboard';
-  } catch (err) {
-    console.log(err);
-  }
+export const useSignInWithGoogle = () => {
+  return async () => {
+    try {
+      await auth.signInWithPopup(googleAuthProvider);
+      createUserInFirebase(auth.currentUser);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 };
 
-export const useSignOutUser = async () => {
-  await auth.signOut();
-  window.location='/';
+export const useSignOutUser = () => {
+  return () => auth.signOut();
 };
