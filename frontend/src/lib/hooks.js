@@ -3,6 +3,8 @@ import { createTheme } from '@mui/material/styles';
 import { blue, grey } from '@mui/material/colors';
 import { auth, googleAuthProvider } from '../utils/firebase';
 import { createUserInFirebase } from './firestore';
+import { deleteUser } from 'firebase/auth';
+import { useNavigate } from 'react-router';
 
 export const useTheme = (mode) => {
   const theme = useMemo(
@@ -49,3 +51,7 @@ export const useSignInWithGoogle = () => {
 export const useSignOutUser = () => {
   return () => auth.signOut();
 };
+
+export const deleteAccount = user => {
+  deleteUser(user).then(() => {  }).catch((err) => {console.log(err);});
+}
