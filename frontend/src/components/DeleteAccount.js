@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { deleteAccount } from '../lib/hooks';
+import { useDeleteUser } from '../lib/hooks';
 import { useNavigate } from 'react-router';
 import { useAuthorizedContext } from '../context/AuthContext';
 
@@ -22,6 +22,7 @@ const modalStyle = {
 export const DeleteAccount = () => {
     const { user } = useAuthorizedContext();
     const navigate = useNavigate();
+    const deleteUser = useDeleteUser();
 
     /* modal state handlers */
     const [open, setOpen] = React.useState(false);
@@ -30,7 +31,7 @@ export const DeleteAccount = () => {
 
     const handleDelete = async () => {
         try {
-          await deleteAccount(user);
+          await deleteUser(user);
         } catch (err) {
           console.log(err);
         } finally {
