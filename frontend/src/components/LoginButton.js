@@ -27,8 +27,13 @@ const LoginButton = () => {
   const navigate = useNavigate();
   const signInWithGoogle = useSignInWithGoogle();
   const handleLogin = async () => {
-    await signInWithGoogle();
-    navigate('/dashboard');
+    try {
+      await signInWithGoogle();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      navigate('/dashboard');
+    }
   };
 
   return (
