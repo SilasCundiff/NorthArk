@@ -47,11 +47,11 @@ const Footer = () => {
                 {/* two lists, left and right, to keep things not looking awful, unless there's not many links on the site */}
                 <ul className=' siteMapList siteMapLeft'>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to={user ? '/Dashboard' : '/'}>Dashboard</Link></li>
-                    <li><Link to={user ? '/Reports' : '/'}>User Reports</Link></li>
+                    <li><Link to={user ? '/dashboard' : '/'}>Dashboard</Link></li>
+                    <li><Link to={user ? '/reports' : '/'}>User Reports</Link></li>
                 </ul>
                 <ul className='siteMapList siteMapRight'>
-                    <li><Link to='/'>link</Link></li>
+                    <li><Link to={user ? '/settings' : '/'}>Settings</Link></li>
                     <li><Link to='/'>link</Link></li>
                     <li><Link to='/'>link</Link></li>
                 </ul>
