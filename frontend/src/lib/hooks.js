@@ -3,8 +3,6 @@ import { createTheme } from '@mui/material/styles';
 import { blue, grey } from '@mui/material/colors';
 import { auth, googleAuthProvider } from '../utils/firebase';
 import { createUserInFirebase } from './firestore';
-import { deleteUser } from 'firebase/auth';
-import { updateEmail } from 'firebase/auth';
 
 export const useTheme = (mode) => {
   const theme = useMemo(
@@ -51,19 +49,3 @@ export const useSignInWithGoogle = () => {
 export const useSignOutUser = () => {
   return () => auth.signOut();
 };
-
-export const useDeleteUser = user => {
-  deleteUser(user).then(() => {  
-    //deletes then redirects in whatever component it's used in
-  }).catch((err) => {
-    console.log(err);
-  });
-}
-
-export const useUpdateEmail = (user, email) => {
-  updateEmail(user, email).then(() => {
-    // probably send a verification email in real scenarios but seems unnecessary 
-  }).catch((err) => {
-    console.log(err);
-  });
-}

@@ -18,6 +18,7 @@ export const ReportsComp = () => {
         <Paper elevation={3}>
           <Box sx={{ width: '100%', padding: '16px' }}>
             <NavigationButtonsReports />
+            <h2>Reports</h2>
           </Box>
         </Paper>
       </Container>

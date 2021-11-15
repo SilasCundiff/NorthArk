@@ -3,9 +3,9 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { useDeleteUser } from '../lib/hooks';
 import { useNavigate } from 'react-router';
 import { useAuthorizedContext } from '../context/AuthContext';
+import { deleteUser } from 'firebase/auth';
 
 const modalStyle = {
     position: 'absolute',
@@ -22,7 +22,6 @@ const modalStyle = {
 export const DeleteAccount = () => {
     const { user } = useAuthorizedContext();
     const navigate = useNavigate();
-    const deleteUser = useDeleteUser();
 
     /* modal state handlers */
     const [open, setOpen] = React.useState(false);
@@ -30,14 +29,12 @@ export const DeleteAccount = () => {
     const handleClose = () => setOpen(false);
 
     const handleDelete = async () => {
-        try {
-          await deleteUser(user);
-        } catch (err) {
-          console.log(err);
-        } finally {
+        deleteUser(user).then(() => {
           navigate('/');
-        }
-      };
+        }).catch((error) => {
+          console.log(error);
+        });
+    }
 
     return (
         <div className='d-flex flex-column'>
@@ -59,4 +56,4 @@ export const DeleteAccount = () => {
       </Modal>
         </div>  
     )
-}
+};
