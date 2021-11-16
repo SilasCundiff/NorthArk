@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useFetchApiData } from '../lib/hooks';
 
 export const AccountOverview = () => {
   const [data, setData] = useState();
+  const fetchData = useFetchApiData();
+
   useEffect(() => {
-    axios.get('http://localhost:8080/api/test').then((res) => {
-      setData(res.data);
+    fetchData('http://localhost:8080/api/test').then((res) => {
+      setData(res);
     });
-  }, []);
-  console.log(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Adding fetchData to dep array causes an infinite loop because we are updating data with it's response
 
   return (
     <div className='overviewDiv'>

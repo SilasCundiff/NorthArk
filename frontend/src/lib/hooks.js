@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material/styles';
 import { blue, grey } from '@mui/material/colors';
 import { auth, googleAuthProvider } from '../utils/firebase';
 import { createUserInFirebase } from './firestore';
+import axios from 'axios';
 
 export const useTheme = (mode) => {
   const theme = useMemo(
@@ -48,4 +49,23 @@ export const useSignInWithGoogle = () => {
 
 export const useSignOutUser = () => {
   return () => auth.signOut();
+};
+
+export const useFetchApiData = () => {
+  return async (url) => {
+    const user = auth.currentUser;
+    const token = user && (await user.getIdToken());
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    return axios
+      .get(url, config)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
+};
 };
