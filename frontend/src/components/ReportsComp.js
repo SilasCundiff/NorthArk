@@ -1,7 +1,7 @@
 import { Container, Paper } from '@mui/material';
 import { Box } from '@mui/system';
 import { useAuthorizedContext } from '../context/AuthContext';
-import { NavigationButtonsReports } from '../components/NavigationButtonsReports';
+import { NavigationButtons } from '../components/NavigationButtons';
 
 //the actual contents of the dashboard. The Dashboard page uses this to conditionally render the dashboard contents
 
@@ -17,7 +17,8 @@ export const ReportsComp = () => {
       <Container>
         <Paper elevation={3}>
           <Box sx={{ width: '100%', padding: '16px' }}>
-            <NavigationButtonsReports />
+            <NavigationButtons />
+            <h2>Reports</h2>
           </Box>
         </Paper>
       </Container>
