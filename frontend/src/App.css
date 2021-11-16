@@ -17,6 +17,14 @@
   padding: 5px 17px;
 }
 
+.settingsTitles {
+  font-size: 1.2em;
+}
+
+.MuiTextField-root > label {
+  font-size: 1em;
+}
+
 .overviewDiv {
   width: 100%;
   max-width: 900px;
