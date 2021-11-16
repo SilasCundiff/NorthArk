@@ -56,7 +56,7 @@ export const EmailChange = () => {
     }
 
     return (
-        <div className='d-flex flex-column'>
+        <div className='d-flex flex-column emailChange'>
             <p>Current email: {emailState}</p>
             <h2 className='settingsTitles'>Change Email</h2>
             <TextField sx={formCSS} id="enterEmail" label="New Email Address" variant="outlined" 

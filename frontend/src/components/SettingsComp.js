@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import { EmailChange } from './EmailChange';
 import { DeleteAccount } from './DeleteAccount';
 import { NavigationButtons } from './NavigationButtons';
+import { PasswordChange } from './PasswordChange';
 
 //the actual contents of the settings page
 
@@ -17,7 +18,8 @@ export const SettingsComp = () => {
               <NavigationButtons />
               <div className='d-flex flex-column align-items-center'>
                   <EmailChange />
-                  <DeleteAccount/>
+                  <PasswordChange />
+                  <DeleteAccount />
               </div>
             </Box>
           </Paper>
