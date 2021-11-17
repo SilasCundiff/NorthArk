@@ -17,6 +17,10 @@
   padding: 5px 17px;
 }
 
+.navButton {
+  margin: auto;
+}
+
 .emailChange {
   margin: 20px;
 }

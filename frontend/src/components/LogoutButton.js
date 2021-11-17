@@ -32,7 +32,7 @@ const LogoutButton = () => {
 
   return (
     <div>
-      <Button variant='contained' onClick={handleOpen}>
+      <Button className='navButton' variant='contained' onClick={handleOpen}>
         Logout
       </Button>
       <Modal open={open} onClose={handleClose} aria-labelledby='modal-modal-title'>
