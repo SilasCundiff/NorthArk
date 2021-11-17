@@ -26,7 +26,7 @@
   }
 }
 
-//hero
+//jumbo
 .jumbotron {
   background-image: url('./assets/bankimage.png');
   background-position: center;
@@ -70,6 +70,58 @@
 
     .jumboButton2 {
       margin: 0 10px;
+    }
+  }
+}
+
+//about
+.about {
+  width: 100%;
+  max-width: 1100px;
+  margin: 50px auto 50px auto;
+
+  .aboutInfo {
+    padding: 15px;
+    .infoBoxes {
+      text-align: center;
+      width: 100%;
+      max-width: 300px;
+      margin: auto;
+      p {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .aboutInfo {
+      padding: 0;
+      .infoBoxes {
+        margin: 15px auto;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+      }
+    }
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .aboutInfo{
+      display: flex;
+      justify-content: space-around;
+      .infoBoxes {
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 20px;
+        width: 30%;
+        min-height: 313px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }
