@@ -1,7 +1,23 @@
-.tempNorthArkImg {
-  width: 300px;
-  margin-left: -15px;
-  margin-top: -20px;
+//nav
+.nav {
+  padding: 15px 20px;
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+
+  div {
+    .navButton {
+      margin-right: 15px;
+    }
+  }
+  .northArkNavLogo {
+    width: 60px;
+    margin-top: -10px;
+  
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .modalButtons {
@@ -10,6 +26,107 @@
   }
 }
 
+//jumbo
+.jumbotron {
+  background-image: url('./assets/bankimage.png');
+  background-position: center;
+  background-size: 1300px;
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  padding-top: 30px;
+  border-radius: 0;
+
+  .heroLogo {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .heroText {
+    margin: -20px 20px 0 0;
+    color: #232323;
+    display: flex;
+    flex-direction: column;
+
+    &::before {
+      content:"";
+      display: inline-block;
+      height: 0.5em;
+      vertical-align: bottom;
+      width: 90px;
+      border-top: 1px solid #232323;
+      margin: auto;
+      margin-top: -10px;
+    }
+  }
+
+  .jumboButtons {
+    margin-top: 60px;
+
+    .jumboButton1 {
+      margin: 0 10px 0 -10px;
+    }
+
+    .jumboButton2 {
+      margin: 0 10px;
+    }
+  }
+}
+
+//about
+.about {
+  width: 100%;
+  max-width: 1100px;
+  margin: 50px auto 50px auto;
+
+  .aboutInfo {
+    padding: 15px;
+    .infoBoxes {
+      text-align: center;
+      width: 100%;
+      max-width: 300px;
+      margin: auto;
+      p {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .aboutInfo {
+      padding: 0;
+      .infoBoxes {
+        margin: 15px auto;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+      }
+    }
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .aboutInfo{
+      display: flex;
+      justify-content: space-around;
+      .infoBoxes {
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 20px;
+        width: 30%;
+        min-height: 313px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+//non-home pages
 .pageTitle {
   font-size: 1em;
   width:100%;
@@ -17,12 +134,10 @@
   text-align: right;
   margin: auto;
   padding: 5px 17px;
+  margin-top: -15px;
 }
 
-.navButton {
-  margin: auto;
-}
-
+//settings
 .emailChange {
   margin: 20px;
 }
@@ -35,12 +150,14 @@
   font-size: 1em;
 }
 
+//account overview
 .overviewDiv {
   width: 100%;
   max-width: 900px;
   margin: auto;
 }
 
+//footer
 #footer {
   width: 100%;
   max-width: 1000px;

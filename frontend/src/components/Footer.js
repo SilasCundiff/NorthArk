@@ -52,8 +52,7 @@ const Footer = () => {
                 </ul>
                 <ul className='siteMapList siteMapRight'>
                     <li><Link to={user ? '/settings' : '/'}>Settings</Link></li>
-                    <li><Link to='/'>link</Link></li>
-                    <li><Link to='/'>link</Link></li>
+                    <li><Link to={user ? '/upgrade' : '/'}>Upgrade</Link></li>
                 </ul>
             </div>
         </div>

@@ -1,11 +1,150 @@
-.tempNorthArkImg {
-  width: 300px;
-  margin-left: -15px;
-  margin-top: -20px;
+.nav {
+  padding: 15px 20px;
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.nav div .navButton {
+  margin-right: 15px;
+}
+
+.nav .northArkNavLogo {
+  width: 60px;
+  margin-top: -10px;
+}
+
+.nav .northArkNavLogo:hover {
+  cursor: pointer;
 }
 
 .modalButtons button {
   margin: 20px 15px -15px 10px;
+}
+
+.jumbotron {
+  background-image: url("./assets/bankimage.png");
+  background-position: center;
+  background-size: 1300px;
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  padding-top: 30px;
+  border-radius: 0;
+}
+
+.jumbotron .heroLogo {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.jumbotron .heroText {
+  margin: -20px 20px 0 0;
+  color: #232323;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.jumbotron .heroText::before {
+  content: "";
+  display: inline-block;
+  height: 0.5em;
+  vertical-align: bottom;
+  width: 90px;
+  border-top: 1px solid #232323;
+  margin: auto;
+  margin-top: -10px;
+}
+
+.jumbotron .jumboButtons {
+  margin-top: 60px;
+}
+
+.jumbotron .jumboButtons .jumboButton1 {
+  margin: 0 10px 0 -10px;
+}
+
+.jumbotron .jumboButtons .jumboButton2 {
+  margin: 0 10px;
+}
+
+.about {
+  width: 100%;
+  max-width: 1100px;
+  margin: 50px auto 50px auto;
+}
+
+.about .aboutInfo {
+  padding: 15px;
+}
+
+.about .aboutInfo .infoBoxes {
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+}
+
+.about .aboutInfo .infoBoxes p {
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+  .about .aboutInfo {
+    padding: 0;
+  }
+  .about .aboutInfo .infoBoxes {
+    margin: 15px auto;
+    min-height: 200px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .about .aboutInfo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .about .aboutInfo .infoBoxes {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 20px;
+    width: 30%;
+    min-height: 313px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 }
 
 .pageTitle {
@@ -15,10 +154,7 @@
   text-align: right;
   margin: auto;
   padding: 5px 17px;
-}
-
-.navButton {
-  margin: auto;
+  margin-top: -15px;
 }
 
 .emailChange {

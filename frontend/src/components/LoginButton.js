@@ -38,7 +38,7 @@ const LoginButton = () => {
 
   return (
     <div>
-      <Button className='navButton' variant='contained' onClick={handleOpen}>
+      <Button className={window.location.pathname==='/' ? 'jumboButton1':'navButton'} variant='contained' onClick={handleOpen}>
         Login
       </Button>
       <Modal open={open} onClose={handleClose} aria-labelledby='modal-modal-title'>
