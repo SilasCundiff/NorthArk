@@ -38,7 +38,7 @@ const LoginButton = () => {
 
   return (
     <div>
-      <Button variant='contained' onClick={handleOpen}>
+      <Button className='navButton' variant='contained' onClick={handleOpen}>
         Login
       </Button>
       <Modal open={open} onClose={handleClose} aria-labelledby='modal-modal-title'>

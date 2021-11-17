@@ -7,11 +7,14 @@ import { Route, Routes } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 import Providers from './components/Providers';
 import Footer from './components/Footer';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
     <Providers>
       <CssBaseline />
+      <NavBar/>
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/dashboard' element={<Dashboard />} />
