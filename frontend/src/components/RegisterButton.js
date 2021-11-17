@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { useSignOutUser } from '../lib/hooks';
+import { useSignInWithGoogle } from '../lib/hooks';
 import { useNavigate } from 'react-router';
 
 const modalStyle = {
@@ -18,35 +18,41 @@ const modalStyle = {
   p: 4,
 };
 
-const LogoutButton = () => {
-  /* logout confirmation modal state handlers */
+const RegisterButton = () => {
+  /* login modal state handlers */
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const navigate = useNavigate();
-  const signOutUser = useSignOutUser();
 
-  const handleLogout = () => {
-    signOutUser();
-    navigate('/');
+  const navigate = useNavigate();
+  const signInWithGoogle = useSignInWithGoogle();
+
+  const handleLogin = async () => {
+    try {
+      await signInWithGoogle();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      navigate('/dashboard');
+    }
   };
 
   return (
     <div>
       <Button className='navButton' variant='contained' onClick={handleOpen}>
-        Logout
+        Register
       </Button>
       <Modal open={open} onClose={handleClose} aria-labelledby='modal-modal-title'>
         <Box sx={modalStyle} className='d-flex align-items-center flex-column'>
           <Typography id='modal-modal-title' variant='h6' component='h2'>
-            Really Logout?
+            Please register with Google!
           </Typography>
           <div className='modalButtons'>
-            <Button variant='contained' onClick={handleLogout}>
-              Logout
+            <Button variant='contained' onClick={handleLogin}>
+              Register
             </Button>
             <Button variant='contained' onClick={handleClose}>
-              Cancel
+              Close
             </Button>
           </div>
         </Box>
@@ -55,4 +61,4 @@ const LogoutButton = () => {
   );
 };
 
-export default LogoutButton;
+export default RegisterButton;
