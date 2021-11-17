@@ -68,4 +68,3 @@ export const useFetchApiData = () => {
       .catch((err) => console.log(err));
   };
 };
-};
