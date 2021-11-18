@@ -4,7 +4,6 @@ import { blue, grey } from '@mui/material/colors';
 import { auth, googleAuthProvider } from '../utils/firebase';
 import { createUserInFirebase } from './firestore';
 import axios from 'axios';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export const useTheme = (mode) => {
   const theme = useMemo(

@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, updateEmail } from "firebase/auth";
 import { useSignInWithGoogle } from '../lib/hooks';
 import { useNavigate } from 'react-router';
 import { FormControl, InputLabel, InputAdornment, FilledInput } from '@mui/material';
@@ -76,12 +76,27 @@ const RegisterButton = () => {
     event.preventDefault();
   };
 
+  {/** this is pretty messy but it works */}
   const handleRegister = async () => {
     let regex = /\S+@\S+\.\S+/;
     if(regex.test(values.email) && values.password===values.password2 && values.username.length>=5){
+      {/* creates the user than updates their display name and email to match those they registered with */}
       createUserWithEmailAndPassword(auth, values.email, values.password)
         .then((userCredential) => {
-          userCredential.user.displayName=values.username;
+
+          updateProfile(userCredential.user, {displayName: values.username})
+            .then(() => {
+              
+            }).catch((error) => {
+              console.log(error)
+            });
+
+          updateEmail(userCredential.user, values.email).then(() => {
+            {/* then navigates to the dashboard after registering */}
+            navigate('/dashboard');
+            }).catch((error) => {
+              console.log(error)
+            });
         })
         .catch((error) => {
           console.log(error);
@@ -100,7 +115,7 @@ const RegisterButton = () => {
             Register with Email and Password
           </Typography>
           
-          <div className='registerForm d-flex flex-column'>
+          <div className='registerForm d-flex flex-column align-items-center'>
             <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
               <InputLabel htmlFor="filled-email">Email</InputLabel>
               <FilledInput
