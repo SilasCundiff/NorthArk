@@ -4,8 +4,8 @@ const admin = require('firebase-admin');
 
 // Gets the idToken and decodes it
 // update to auto reject if no token is found or if token is bad
-// TODO headers aren't being sent, need to fix
 module.exports = async function getIdToken(req, res, next) {
+  if (!req.headers.authorization) return res.status(403).send('No credentials sent');
   if (req.headers?.authorization?.startsWith('Bearer ')) {
     const idToken = req.headers.authorization.split('Bearer ')[1];
     const checkRevoked = true;

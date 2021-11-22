@@ -1,29 +1,53 @@
 import { useCallback } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
-import axios from 'axios';
-import { useAuthorizedContext } from '../context/AuthContext';
+import Button from '@mui/material/Button';
+import { auth } from '../utils/firebase';
 
-const LinkButton = () => {
-  const { linkToken } = useAuthorizedContext();
+const LinkButton = ({ linkToken, setAccessToken }) => {
+  const onSuccess = useCallback(
+    async (public_token) => {
+      const user = auth.currentUser;
+      const token = user && (await user.getIdToken());
 
-  const onSuccess = useCallback((public_token, metadata) => {
-    const res = axios.post('/api/set_access_token', JSON.stringify({ public_token }), {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  }, []);
+      const response = await fetch('http://localhost:8080/api/set_access_token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ public_token }),
+      });
 
-  const { open, ready } = usePlaidLink({ token: linkToken, onSuccess });
+      if (!response.ok) {
+        setAccessToken({
+          itemId: `no item_id retrieved`,
+          accessToken: `no access_token retrieved`,
+          isItemAccess: false,
+        });
+        return;
+      } else {
+        const data = await response.json();
+        setAccessToken({
+          itemId: data.item_id,
+          accessToken: data.access_token,
+          isItemAccess: true,
+        });
+      }
+    },
+    [setAccessToken]
+  );
+
+  const config = {
+    token: linkToken,
+    onSuccess,
+  };
+
+  const { open, ready } = usePlaidLink(config);
 
   return (
-    <>
-      {linkToken ? (
-        <button onClick={() => open()} disabled={!ready}>
-          Link account
-        </button>
-      ) : null}
-    </>
+    <Button variant='outlined' onClick={() => open()} disabled={!ready}>
+      Link an account
+    </Button>
   );
 };
 
