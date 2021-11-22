@@ -64,19 +64,18 @@ export const useAxiosWithAuth = ({ endpoint, method, body = {} }) => {
     const token = user && (await user.getIdToken());
 
     // TODO Remove later, used for testing bad token
-    const testToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+    // const testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${testToken}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
     if (method === 'post') {
       axios
-        .post(`http://localhost:8080/api/${endpoint}`, body)
+        .post(`http://localhost:8080/api/${endpoint}`, body, config)
         .then((res) => {
           setResponse(res.data);
         })
