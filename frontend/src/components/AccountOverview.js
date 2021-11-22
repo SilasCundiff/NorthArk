@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react';
-import { useFetchApiData } from '../lib/hooks';
+import { useAxiosWithAuth } from '../lib/hooks';
+import LinkButton from './LinkButton';
 
 export const AccountOverview = () => {
-  const [data, setData] = useState();
-  const fetchData = useFetchApiData();
+  const [linkToken, setLinkToken] = useState(null);
+  const [accessToken, setAccessToken] = useState({});
+  const { response, status, error } = useAxiosWithAuth({ endpoint: 'create-link-token', method: 'post' });
 
   useEffect(() => {
-    fetchData('http://localhost:8080/api/test').then((res) => {
-      setData(res);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Adding fetchData to dep array causes an infinite loop because we are updating data with it's response
+    if (response !== null) {
+      setLinkToken(response.link_token);
+    }
+  }, [response]);
 
   return (
     <div className='overviewDiv'>
       <h2 sx={{ fontSize: '5px' }}>Account Overview</h2>
-      <p>
-        <span>{data?.first ?? ''} </span>
-        <span>{data?.last ?? ''}</span>
-      </p>
-      <div>{data?.balance ?? ''}</div>
+      <div>{accessToken && `${accessToken?.accessToken}`}</div>
+      <div>{linkToken !== null ? `${linkToken}` : `${status}`}</div>
+      {linkToken !== null && <LinkButton linkToken={linkToken} setAccessToken={setAccessToken}></LinkButton>}
+      <div>{error && `${error}`}</div>
     </div>
   );
 };
