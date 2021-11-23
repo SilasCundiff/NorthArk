@@ -20,17 +20,17 @@ const LinkButton = ({ linkToken, setAccessToken }) => {
 
       if (!response.ok) {
         setAccessToken({
-          itemId: `no item_id retrieved`,
-          accessToken: `no access_token retrieved`,
-          isItemAccess: false,
+          item_id: `no item_id retrieved`,
+          access_token: `no access_token retrieved`,
+          request_id: '',
         });
         return;
       } else {
         const data = await response.json();
         setAccessToken({
-          itemId: data.item_id,
-          accessToken: data.access_token,
-          isItemAccess: true,
+          item_id: data.item_id,
+          access_token: data.access_token,
+          request_id: data.request_id,
         });
       }
     },
