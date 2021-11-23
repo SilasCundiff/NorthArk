@@ -77,10 +77,13 @@ export const AccountOverview = () => {
   return (
     <div className='overviewDiv'>
       <h2 sx={{ fontSize: '5px' }}>Account Overview</h2>
-      {accounts && <AccountsList accounts={accounts} />}
+      <div className='wrapper'>
+        {accounts && <AccountsList accounts={accounts} />}
+      </div>
+      <h2 sx={{ fontSize: '5px' }}>Transaction History</h2>
       {transactions && <TransactionsList transactions={transactions.transactions} />}
-      <div>{accessToken && `${accessToken?.access_token}`}</div>
-      <div>{linkToken !== null ? `${linkToken}` : `${linkTokenResStatus}`}</div>
+      {/* <div>{accessToken && `${accessToken?.access_token}`}</div>
+      <div>{linkToken !== null ? `${linkToken}` : `${linkTokenResStatus}`}</div> */}
       {linkToken !== null && <LinkButton linkToken={linkToken} setAccessToken={setAccessToken}></LinkButton>}
       <div>{linkTokenResError && `${linkTokenResError}`}</div>
     </div>

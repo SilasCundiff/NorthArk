@@ -90,13 +90,13 @@ export const TransactionsList = ({ transactions = [] }) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>MerchantName</TableCell>
-            <TableCell>Amount</TableCell>
-            <TableCell>Date</TableCell>
+            <TableCell id='tableTitle'>MerchantName</TableCell>
+            <TableCell id='tableTitle'>Amount</TableCell>
+            <TableCell id='tableTitle'>Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {transactions.map((transaction) => {
+          {transactions.slice(page * rowsPerPage, (page * rowsPerPage) + rowsPerPage).map((transaction) => {
             return (
               <TableRow key={transaction.transaction_id}>
                 <TableCell>{transaction.merchant_name || transaction.name}</TableCell>
@@ -128,6 +128,7 @@ export const TransactionsList = ({ transactions = [] }) => {
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}
+              className='pagination'
             />
           </TableRow>
         </TableFooter>

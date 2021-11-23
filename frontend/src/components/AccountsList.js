@@ -3,7 +3,7 @@ export const AccountsList = ({ accounts = [] }) => {
     <>
       {accounts.map((account) => {
         return (
-          <div key={account.account_id}>
+          <div key={account.account_id} className='accountItem'>
             <h3>{account.name}</h3>
             <div>
               <span>{account.balances.available && `available: $ ${account.balances.available}`}</span>{' '}
