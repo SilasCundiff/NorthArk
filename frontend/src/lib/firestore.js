@@ -16,6 +16,7 @@ export const createUserInFirebase = async (user) => {
       userDocument.set({
         email,
         displayName,
+        accounts: []
       }); // If the user doesn't exist, add them to the db.
     }
   });
