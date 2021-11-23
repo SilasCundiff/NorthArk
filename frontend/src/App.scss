@@ -157,6 +157,40 @@
   margin: auto;
 }
 
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 15px 0 20px 0;
+
+  @media only screen and (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .accountItem {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+  }
+}
+
+#tableTitle {
+  font-size: 1.1em;
+}
+
+.pagination {
+  width: 100%;
+  max-width: 900px;
+  
+  p {
+    margin: 0;
+  }
+}
+
+
 //footer
 #footer {
   width: 100%;

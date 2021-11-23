@@ -45,7 +45,7 @@ const LinkButton = ({ linkToken, setAccessToken }) => {
   const { open, ready } = usePlaidLink(config);
 
   return (
-    <Button variant='outlined' onClick={() => open()} disabled={!ready}>
+    <Button sx={{ marginTop: '20px' }} variant='contained' onClick={() => open()} disabled={!ready}>
       Link an account
     </Button>
   );
