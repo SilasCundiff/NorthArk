@@ -72,6 +72,35 @@ app.post('/api/set_access_token', async (req, res) => {
   }
 });
 
+/**
+ * @requires access_token in request
+ */
+app.post('/api/accounts/get', async (req, res) => {
+  try {
+    const accountsResponse = await client.accountsGet({
+      access_token: req.body.access_token,
+    });
+    const accounts = accountsResponse.data.accounts;
+    res.status(200).json({ accounts });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.post('/api/transactions/get', async (req, res) => {
+  try {
+    const transactionsResponse = await client.transactionsGet({
+      access_token: req.body.access_token,
+      start_date: '2020-11-11',
+      end_date: '2021-12-11',
+    });
+    const transactions = transactionsResponse.data;
+    res.status(200).json({ transactions });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
