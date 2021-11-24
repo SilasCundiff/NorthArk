@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { useSignOutUser } from '../lib/hooks';
+import { useSignOutUser } from '../../lib/hooks';
 import { useNavigate } from 'react-router';
 
 const modalStyle = {

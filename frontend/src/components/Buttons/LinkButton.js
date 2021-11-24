@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
 import Button from '@mui/material/Button';
-import { auth } from '../utils/firebase';
+import { auth } from '../../lib/firebase';
 
 const LinkButton = ({ linkToken, setAccessToken }) => {
   const onSuccess = useCallback(

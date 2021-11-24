@@ -1,4 +1,4 @@
-import { firestore } from '../utils/firebase';
+import { firestore } from './firebase';
 
 // custom firestore functions
 
@@ -16,7 +16,7 @@ export const createUserInFirebase = async (user) => {
       userDocument.set({
         email,
         displayName,
-        accounts: []
+        accounts: [],
       }); // If the user doesn't exist, add them to the db.
     }
   });

@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect, useCallback } from 'react';
 import { createTheme } from '@mui/material/styles';
 import { blue, grey } from '@mui/material/colors';
-import { auth, googleAuthProvider } from '../utils/firebase';
+import { auth, googleAuthProvider } from './firebase';
 import { createUserInFirebase } from './firestore';
 import axios from 'axios';
 
