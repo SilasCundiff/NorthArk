@@ -23,7 +23,7 @@
 }
 
 .jumbotron {
-  background-image: url("./assets/bankimage.png");
+  background-image: url('../assets/bankimage.png');
   background-position: center;
   background-size: 1300px;
   width: 100%;
@@ -47,12 +47,12 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .jumbotron .heroText::before {
-  content: "";
+  content: '';
   display: inline-block;
   height: 0.5em;
   vertical-align: bottom;
@@ -107,13 +107,13 @@
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
   }
 }
 
@@ -123,7 +123,7 @@
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
   }
   .about .aboutInfo .infoBoxes {
     border: 1px solid black;
@@ -136,14 +136,14 @@
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 }
 
@@ -178,8 +178,8 @@
 .wrapper {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-columns: (1fr) [3];
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin: 15px 0 20px 0;
 }
@@ -188,8 +188,8 @@
   .wrapper {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (1fr)[2];
-        grid-template-columns: repeat(2, 1fr);
+    -ms-grid-columns: (1fr) [2];
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-bottom: 20px;
   }

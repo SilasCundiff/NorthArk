@@ -13,7 +13,7 @@
   .northArkNavLogo {
     width: 60px;
     margin-top: -10px;
-  
+
     &:hover {
       cursor: pointer;
     }
@@ -28,7 +28,7 @@
 
 //jumbo
 .jumbotron {
-  background-image: url('./assets/bankimage.png');
+  background-image: url('../assets/bankimage.png');
   background-position: center;
   background-size: 1300px;
   width: 100%;
@@ -50,7 +50,7 @@
     flex-direction: column;
 
     &::before {
-      content:"";
+      content: '';
       display: inline-block;
       height: 0.5em;
       vertical-align: bottom;
@@ -106,9 +106,9 @@
       }
     }
   }
-  
+
   @media only screen and (min-width: 768px) {
-    .aboutInfo{
+    .aboutInfo {
       display: flex;
       justify-content: space-around;
       .infoBoxes {
@@ -129,7 +129,7 @@
 //non-home pages
 .pageTitle {
   font-size: 1em;
-  width:100%;
+  width: 100%;
   max-width: 1000px;
   text-align: right;
   margin: auto;
@@ -184,12 +184,11 @@
 .pagination {
   width: 100%;
   max-width: 900px;
-  
+
   p {
     margin: 0;
   }
 }
-
 
 //footer
 #footer {
@@ -201,7 +200,6 @@
   margin-top: 10px;
 
   .footerLeft {
-
     .leftTop {
       .footerLogo {
         width: 35px;
@@ -217,13 +215,12 @@
       margin-top: -12px;
       padding-left: 4px;
     }
-
   }
 
   .footerCenter {
     margin-top: 15px;
 
-    @media only screen and (max-width: 768px){
+    @media only screen and (max-width: 768px) {
       margin-top: -10px;
     }
   }
@@ -233,7 +230,6 @@
 
     .siteMapList {
       list-style-type: none;
-
     }
   }
 }

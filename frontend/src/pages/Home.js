@@ -1,5 +1,5 @@
-import Jumbotron from '../components/home_components/Jumbotron';
-import About from '../components/home_components/About';
+import Jumbotron from '../components/Home/Jumbotron';
+import About from '../components/Home/About';
 
 const Home = () => {
   return (

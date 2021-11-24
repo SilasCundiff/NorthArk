@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useAxiosWithAuth } from '../lib/hooks';
-import LinkButton from './LinkButton';
-import { auth } from '../utils/firebase';
+import { useAxiosWithAuth } from '../../lib/hooks';
+import LinkButton from '../Buttons/LinkButton';
+import { auth } from '../../lib/firebase';
 import { TransactionsList } from './Transactions';
 import { AccountsList } from './AccountsList';
 
@@ -77,9 +77,7 @@ export const AccountOverview = () => {
   return (
     <div className='overviewDiv'>
       <h2 sx={{ fontSize: '5px' }}>Account Overview</h2>
-      <div className='wrapper'>
-        {accounts && <AccountsList accounts={accounts} />}
-      </div>
+      <div className='wrapper'>{accounts && <AccountsList accounts={accounts} />}</div>
       <h2 sx={{ fontSize: '5px' }}>Transaction History</h2>
       {transactions && <TransactionsList transactions={transactions.transactions} />}
       {/* <div>{accessToken && `${accessToken?.access_token}`}</div>

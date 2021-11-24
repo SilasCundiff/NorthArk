@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthorizedProvider } from '../context/AuthContext';
-import { ColorModeProvider } from '../context/ColorModeContext';
-import { useTheme } from '../lib/hooks';
-import { auth } from '../utils/firebase';
+import { AuthorizedProvider } from '../../context/AuthContext';
+import { ColorModeProvider } from '../../context/ColorModeContext';
+import { useTheme } from '../../lib/hooks';
+import { auth } from '../../lib/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Providers = ({ children }) => {

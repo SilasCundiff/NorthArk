@@ -4,10 +4,10 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { getAuth, createUserWithEmailAndPassword, updateProfile, updateEmail } from 'firebase/auth';
-import { useSignInWithGoogle } from '../lib/hooks';
+import { useSignInWithGoogle } from '../../lib/hooks';
 import { useNavigate } from 'react-router';
 import { FormControl, InputLabel, InputAdornment, FilledInput } from '@mui/material';
-import { firestore } from '../utils/firebase';
+import { firestore } from '../../lib/firebase';
 import IconButton from '@mui/material/IconButton';
 import GoogleIcon from '@mui/icons-material/Google';
 import Visibility from '@mui/icons-material/Visibility';
@@ -86,17 +86,20 @@ const RegisterButton = () => {
               console.log(error);
             });
 
-          updateEmail(userCredential.user, values.email)
-          
-          firestore.doc(`users/${userCredential.user.uid}`).get().then((docSnapshot) => {
+          updateEmail(userCredential.user, values.email);
+
+          firestore
+            .doc(`users/${userCredential.user.uid}`)
+            .get()
+            .then((docSnapshot) => {
               //add user data
               firestore.doc(`users/${userCredential.user.uid}`).set({
                 accounts: [],
                 email: values.email,
-                displayName: values.username
+                displayName: values.username,
               });
               // then navigates to the dashboard after registering
-            
+
               navigate('/');
             })
             .catch((error) => {
