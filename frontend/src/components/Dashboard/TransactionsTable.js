@@ -69,10 +69,9 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-export const TransactionsList = ({ transactions = [] }) => {
+export const TransactionsTable = ({ transactions = [] }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - transactions.length) : 0;
 
@@ -90,18 +89,20 @@ export const TransactionsList = ({ transactions = [] }) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell id='tableTitle'>MerchantName</TableCell>
-            <TableCell id='tableTitle'>Amount</TableCell>
             <TableCell id='tableTitle'>Date</TableCell>
+            <TableCell id='tableTitle'>Description</TableCell>
+            <TableCell id='tableTitle'>Income</TableCell>
+            <TableCell id='tableTitle'>Expense</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {transactions.slice(page * rowsPerPage, (page * rowsPerPage) + rowsPerPage).map((transaction) => {
+          {transactions.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((transaction) => {
             return (
               <TableRow key={transaction.transaction_id}>
-                <TableCell>{transaction.merchant_name || transaction.name}</TableCell>
-                <TableCell>{transaction.amount}</TableCell>
                 <TableCell>{transaction.date}</TableCell>
+                <TableCell>{transaction.merchant_name || transaction.name}</TableCell>
+                <TableCell>{transaction.amount > 0 ? transaction.amount : 0}</TableCell>
+                <TableCell>{transaction.amount < 0 ? transaction.amount * -1 : 0}</TableCell>
               </TableRow>
             );
           })}

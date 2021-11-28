@@ -88,15 +88,18 @@ app.post('/api/accounts/get', async (req, res) => {
 });
 
 app.post('/api/transactions/get', async (req, res) => {
+  let transactionsConfig = {
+    access_token: req.body.access_token,
+    start_date: '2020-01-01',
+    end_date: '2021-01-01',
+  };
+
+  if (req.body.account_id) {
+    transactionsConfig.options = { account_ids: [req.body.account_id] };
+  }
+
   try {
-    const transactionsResponse = await client.transactionsGet({
-      access_token: req.body.access_token,
-      start_date: '2020-11-11',
-      end_date: '2021-12-11',
-      options: {
-        account_ids: [req.body.account_id],
-      },
-    });
+    const transactionsResponse = await client.transactionsGet(transactionsConfig);
     const transactions = transactionsResponse.data;
     res.status(200).json({ transactions });
   } catch (error) {
