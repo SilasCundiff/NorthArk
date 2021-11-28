@@ -93,6 +93,9 @@ app.post('/api/transactions/get', async (req, res) => {
       access_token: req.body.access_token,
       start_date: '2020-11-11',
       end_date: '2021-12-11',
+      options: {
+        account_ids: [req.body.account_id],
+      },
     });
     const transactions = transactionsResponse.data;
     res.status(200).json({ transactions });

@@ -6,6 +6,9 @@ import { auth } from '../../lib/firebase';
 import { TransactionsList } from './Transactions';
 import { AccountsList } from './AccountsList';
 
+//! Regression imports
+import { calculateRegression, prepareData } from '../../lib/helpers';
+
 export const AccountOverview = () => {
   const [linkToken, setLinkToken] = useState(null);
   const [accounts, setAccounts] = useState(null);
@@ -16,6 +19,9 @@ export const AccountOverview = () => {
     status: linkTokenResStatus,
     error: linkTokenResError,
   } = useAxiosWithAuth({ endpoint: 'create-link-token', method: 'post' });
+
+  //! Regression data
+  const [regressionData, setRegressionData] = useState(null);
 
   useEffect(() => {
     if (linkTokenRes !== null) {
@@ -46,6 +52,7 @@ export const AccountOverview = () => {
   const getTransactions = async () => {
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
+    const account_id = await accounts[0].account_id;
 
     const config = {
       headers: {
@@ -56,20 +63,25 @@ export const AccountOverview = () => {
 
     const body = {
       access_token: accessToken.access_token,
+      account_id: account_id,
     };
 
-    axios
-      .post('http://localhost:8080/api/transactions/get', JSON.stringify(body), config)
-      .then((res) => setTransactions(res.data.transactions));
+    axios.post('http://localhost:8080/api/transactions/get', JSON.stringify(body), config).then((res) => {
+      setTransactions(res.data.transactions);
+      const formattedData = prepareData(res.data.transactions.transactions);
+      setRegressionData(calculateRegression(formattedData));
+    });
   };
 
   useEffect(() => {
-    if (accessToken.access_token) {
+    if (accessToken.access_token && !accounts) {
       getAccounts();
+    }
+    if (accounts) {
       getTransactions();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessToken]);
+  }, [accessToken, accounts]);
 
   console.log(`accounts >>>`, accounts);
   console.log(`transactions >>>`, transactions);
@@ -80,8 +92,6 @@ export const AccountOverview = () => {
       <div className='wrapper'>{accounts && <AccountsList accounts={accounts} />}</div>
       <h2 sx={{ fontSize: '5px' }}>Transaction History</h2>
       {transactions && <TransactionsList transactions={transactions.transactions} />}
-      {/* <div>{accessToken && `${accessToken?.access_token}`}</div>
-      <div>{linkToken !== null ? `${linkToken}` : `${linkTokenResStatus}`}</div> */}
       {linkToken !== null && <LinkButton linkToken={linkToken} setAccessToken={setAccessToken}></LinkButton>}
       <div>{linkTokenResError && `${linkTokenResError}`}</div>
     </div>
