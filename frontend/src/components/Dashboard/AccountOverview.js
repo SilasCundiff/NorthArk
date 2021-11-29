@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useAxiosWithAuth } from '../../lib/hooks';
+import { useAuthorizedContext } from '../../context/AuthContext';
+import { useAccountsContext } from '../../context/AccountsContext';
 import LinkButton from '../Buttons/LinkButton';
 import { auth } from '../../lib/firebase';
 import TransactionsModule from './TransactionsModule';
@@ -10,18 +11,11 @@ import { AccountsList } from './AccountsList';
 import { calculateRegression, prepareData } from '../../lib/helpers';
 
 export const AccountOverview = () => {
-  const [linkToken, setLinkToken] = useState(null);
-  const [accounts, setAccounts] = useState(null);
-  const [selectedAccount, setSelectedAccount] = useState(null);
-  const [transactions, setTransactions] = useState(null);
-  const [accessToken, setAccessToken] = useState({});
-  const [loadingTransactions, setLoadingTransactions] = useState('initial');
+  const { accessToken, linkToken, linkTokenResError } = useAuthorizedContext();
+  const { accounts, setAccounts, transactions, setTransactions, loadingTransactions, setLoadingTransactions } =
+    useAccountsContext();
 
-  const {
-    response: linkTokenRes,
-    status: linkTokenResStatus,
-    error: linkTokenResError,
-  } = useAxiosWithAuth({ endpoint: 'create-link-token', method: 'post' });
+  const [selectedAccount, setSelectedAccount] = useState(null);
 
   //! Regression data
   const [regressionData, setRegressionData] = useState(null);
@@ -75,12 +69,6 @@ export const AccountOverview = () => {
   };
 
   useEffect(() => {
-    if (linkTokenRes !== null) {
-      setLinkToken(linkTokenRes.link_token);
-    }
-  }, [linkTokenRes]);
-
-  useEffect(() => {
     if (accessToken.access_token && !accounts) {
       getAccounts();
     }
@@ -105,7 +93,7 @@ export const AccountOverview = () => {
         transactions={transactions}
         getTransactions={getTransactions}
       />
-      {linkToken !== null && <LinkButton linkToken={linkToken} setAccessToken={setAccessToken}></LinkButton>}
+      {linkToken !== null && <LinkButton linkToken={linkToken}></LinkButton>}
       <div>{linkTokenResError && `${linkTokenResError}`}</div>
     </div>
   );
