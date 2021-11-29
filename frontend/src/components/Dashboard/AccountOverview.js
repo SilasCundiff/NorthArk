@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useAuthorizedContext } from '../../context/AuthContext';
+import { useAccountsContext } from '../../context/AccountsContext';
 import LinkButton from '../Buttons/LinkButton';
 import { auth } from '../../lib/firebase';
 import TransactionsModule from './TransactionsModule';
@@ -11,10 +12,10 @@ import { calculateRegression, prepareData } from '../../lib/helpers';
 
 export const AccountOverview = () => {
   const { accessToken, linkToken, linkTokenResError } = useAuthorizedContext();
-  const [accounts, setAccounts] = useState(null);
+  const { accounts, setAccounts, transactions, setTransactions, loadingTransactions, setLoadingTransactions } =
+    useAccountsContext();
+
   const [selectedAccount, setSelectedAccount] = useState(null);
-  const [transactions, setTransactions] = useState(null);
-  const [loadingTransactions, setLoadingTransactions] = useState('initial');
 
   //! Regression data
   const [regressionData, setRegressionData] = useState(null);
