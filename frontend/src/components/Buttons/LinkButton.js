@@ -2,8 +2,9 @@ import { useCallback } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
 import Button from '@mui/material/Button';
 import { auth } from '../../lib/firebase';
-
-const LinkButton = ({ linkToken, setAccessToken }) => {
+import { useAuthorizedContext } from '../../context/AuthContext';
+const LinkButton = ({ linkToken }) => {
+  const { setAccessToken } = useAuthorizedContext();
   const onSuccess = useCallback(
     async (public_token) => {
       const user = auth.currentUser;

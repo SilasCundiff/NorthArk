@@ -1,33 +1,23 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useAxiosWithAuth } from '../../lib/hooks';
+import { useAuthorizedContext } from '../../context/AuthContext';
 import LinkButton from '../Buttons/LinkButton';
 import { auth } from '../../lib/firebase';
-import { TransactionsList } from './Transactions';
+import TransactionsModule from './TransactionsModule';
 import { AccountsList } from './AccountsList';
 
 //! Regression imports
 import { calculateRegression, prepareData } from '../../lib/helpers';
 
 export const AccountOverview = () => {
-  const [linkToken, setLinkToken] = useState(null);
+  const { accessToken, linkToken, linkTokenResError } = useAuthorizedContext();
   const [accounts, setAccounts] = useState(null);
+  const [selectedAccount, setSelectedAccount] = useState(null);
   const [transactions, setTransactions] = useState(null);
-  const [accessToken, setAccessToken] = useState({});
-  const {
-    response: linkTokenRes,
-    status: linkTokenResStatus,
-    error: linkTokenResError,
-  } = useAxiosWithAuth({ endpoint: 'create-link-token', method: 'post' });
+  const [loadingTransactions, setLoadingTransactions] = useState('initial');
 
   //! Regression data
   const [regressionData, setRegressionData] = useState(null);
-
-  useEffect(() => {
-    if (linkTokenRes !== null) {
-      setLinkToken(linkTokenRes.link_token);
-    }
-  }, [linkTokenRes]);
 
   const getAccounts = async () => {
     const user = auth.currentUser;
@@ -49,10 +39,10 @@ export const AccountOverview = () => {
       .then((res) => setAccounts(res.data.accounts));
   };
 
-  const getTransactions = async () => {
+  const getTransactions = async (account_id = null) => {
+    setLoadingTransactions('loading');
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
-    const account_id = await accounts[0].account_id;
 
     const config = {
       headers: {
@@ -60,17 +50,21 @@ export const AccountOverview = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-
+    // Date format is YYYY-MM-DD
     const body = {
       access_token: accessToken.access_token,
       account_id: account_id,
     };
 
-    axios.post('http://localhost:8080/api/transactions/get', JSON.stringify(body), config).then((res) => {
-      setTransactions(res.data.transactions);
-      const formattedData = prepareData(res.data.transactions.transactions);
-      setRegressionData(calculateRegression(formattedData));
-    });
+    axios
+      .post('http://localhost:8080/api/transactions/get', JSON.stringify(body), config)
+      .then((res) => {
+        setTransactions(res.data.transactions);
+        const formattedData = prepareData(res.data.transactions.transactions);
+        setRegressionData(calculateRegression(formattedData));
+        setLoadingTransactions('done');
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -89,10 +83,16 @@ export const AccountOverview = () => {
   return (
     <div className='overviewDiv'>
       <h2 sx={{ fontSize: '5px' }}>Account Overview</h2>
-      <div className='wrapper'>{accounts && <AccountsList accounts={accounts} />}</div>
-      <h2 sx={{ fontSize: '5px' }}>Transaction History</h2>
-      {transactions && <TransactionsList transactions={transactions.transactions} />}
-      {linkToken !== null && <LinkButton linkToken={linkToken} setAccessToken={setAccessToken}></LinkButton>}
+      <div className='wrapper'>
+        {accounts && <AccountsList accounts={accounts} setSelectedAccount={setSelectedAccount} />}
+      </div>
+      <TransactionsModule
+        loadingTransactions={loadingTransactions}
+        selectedAccount={selectedAccount}
+        transactions={transactions}
+        getTransactions={getTransactions}
+      />
+      {linkToken !== null && <LinkButton linkToken={linkToken}></LinkButton>}
       <div>{linkTokenResError && `${linkTokenResError}`}</div>
     </div>
   );
